@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{0880a2de-b9a5-4d63-b43e-6488194d3ef5}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -57,8 +57,22 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Functions" />
+    <Folder Include="Files" />
+    <Folder Include="Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\PostCodes.sql" />
+    <Build Include="Procedures\PopPostCodes.sql" />
+    <Build Include="Functions\distanceLatLonInKm.sql" />
+    <Build Include="Functions\distanceBetweenPostCodes.sql" />
+    <Build Include="Functions\Function1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Files\ukpostcodes.csv" />
+    <None Include="PostCodeDistanceCalculator.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
