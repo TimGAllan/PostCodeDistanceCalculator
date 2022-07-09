@@ -67,6 +67,7 @@
     <Build Include="Functions\distanceLatLonInKm.sql" />
     <Build Include="Functions\distanceBetweenPostCodes.sql" />
     <Build Include="Functions\postCodesWithinXkm.sql" />
+    <Build Include="Functions\distanceToAllPostCodes.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Files\ukpostcodes.csv" />
