@@ -29,7 +29,7 @@ Supose we have a CRM database containing a `Prospects` table containing a list o
 
 If we a particular Branch was running a prompotion and we want to notify all Prospective clients within 5 km of the branch, we could use the below code to obtain a list of all the Prospective clients we should contact.
 
-    SELECT a.ProspectName, a.ProspectEmail, a.PostCode
+    SELECT      a.ProspectName, a.ProspectEmail, a.PostCode
     FROM        CRM..Prospects a
     INNER JOIN  postCodesWithinXkm('PO19 1EL',5) b on a.PostCode = b.PostCode
 
@@ -45,14 +45,14 @@ The output would like something like:
 
  We could use the code below to determine the number of Prospects within 5 km of each of our branches.
 
-    SELECT a.PostCode As BranchPostcode, a.BranchName, count(b.Id) As CustomerCount
+    SELECT      a.PostCode As BranchPostcode, a.BranchName, count(b.Id) As CustomerCount
     FROM        CRM..Branches a
     INNER JOIN  CRM..Prospects b ON PostCodeDistanceCalculator.dbo.distanceBetweenPostCodes(a.PostCode,b.PostCode)<5
-    GROUP BY a.PostCode
+    GROUP BY    a.PostCode
 
 The output would like something like:
 
-| Branch Postcode   |Branch         | Customers    |
+| Branch Postcode   | Branch        | Customers    |
 | -----------       | -----------   |-----------   |
 | BN1 2RE           | Brighton      |15            |
 | PO19 1EL          | Chicester     |37            |
@@ -69,7 +69,7 @@ Suppose we wanted to determine the closest Branch for each Prospective Client. W
 
 The output would like something like:
 
-| Branch Postcode   |Branch         | Distance          |
+| ProspectName      | BranchName    | Distance          |
 | -----------       | -----------   |-----------        |
 | Acme Corp Ltd     | Brighton      |7.477788367078679  |
 | Acme Corp Ltd     | Chicester     |82.13621491096778  |
@@ -80,7 +80,7 @@ The output would like something like:
 
 1. Clone the repo
 2. Open the Solution in Visual Studio
-3. Open `PopPostCodes.sql` and edit the file location `'C:\Users\timga\source\repos\PostCodeDistanceCalculator\PostCodeDistanceCalculator\Files\ukpostcodes.csv'` to point to the correct 
+3. Open `PopPostCodes.sql` and edit the file location `'C:\Users\timga\source\repos\PostCodeDistanceCalculator\PostCodeDistanceCalculator\Files\ukpostcodes.csv'` to point to the correct location.
 4. Open the `PostCodeDistanceCalculator.publish.xml` and select the target Instance and database to deploy to.
 
  ***
