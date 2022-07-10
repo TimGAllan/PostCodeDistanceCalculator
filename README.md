@@ -47,7 +47,8 @@ The output would like something like:
 
     SELECT      a.PostCode As BranchPostcode, a.BranchName, count(b.Id) As CustomerCount
     FROM        CRM..Branches a
-    INNER JOIN  CRM..Prospects b ON PostCodeDistanceCalculator.dbo.distanceBetweenPostCodes(a.PostCode,b.PostCode)<5
+    INNER JOIN  CRM..Prospects b 
+    ON PostCodeDistanceCalculator.dbo.distanceBetweenPostCodes(a.PostCode,b.PostCode)<5
     GROUP BY    a.PostCode
 
 The output would like something like:
@@ -62,7 +63,8 @@ The output would like something like:
 
 Suppose we wanted to determine the closest Branch for each Prospective Client. We can make use of `distanceToAllPostCodes` to determine the distance of each branch to each Prospective client and order by the closet.
 
-    SELECT a.ProspectName, c.BranchName, b.distance, ROW_NUMBER() OVER (PARTITION BY a.ProspectName ORDER BY b.distance ) As DistanceRank
+    SELECT  a.ProspectName, c.BranchName, b.distance, 
+            ROW_NUMBER() OVER (PARTITION BY a.ProspectName ORDER BY b.distance ) As DistanceRank
     FROM        CRM..Prospects a
     CROSS APPLY PostCodeDistanceCalculator.dbo.distanceToAllPostCodes(a.PostCode) b
     INNER JOIN  CRM..Branches c on b.Postcode = c.Postcode
