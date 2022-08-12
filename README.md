@@ -2,6 +2,11 @@
 
 A tool for calculating the distance between two UK Post distances and finding a list of all post codes within a certain number of kilometers.
 
+Click below to watch the walkthrough video:
+
+[<img src="PostCodeDistanceCalculator/Assets/Images/Thumbnail.jpg">](https://www.youtube.com/watch?v=t5Q1bL8FmUs)
+
+
 ## Finding all Postcodes within X kilometers
 
 To find a list of postcodes within X kilometers, use the Table Function `postCodesWithinXkm`. For example, to find all Postcodes with 5 kilometers of SW1A 0AA, you can use the below code.
@@ -12,7 +17,7 @@ To find a list of postcodes within X kilometers, use the Table Function `postCod
 
 To determine the distance between two postcodes, use the Scalar function `distanceBetweenPostCodes`. For Example: to find the distance between SW1A 0AA and SE10 0DX, you can use the below code.
 
-    SELECT distanceBetweenPostCodes('SW1A 0AA','SE10 0DX')
+    SELECT dbo.distanceBetweenPostCodes('SW1A 0AA','SE10 0DX')
 
 ## Returning a table with distance from one post to all Others
 
